@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "856195988916",
+    "project_id": "masterndelivery-3cb92",
+    "storage_bucket": "masterndelivery-3cb92.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:856195988916:android:a3ce0765a6335a35c986e1",
+        "android_client_info": {
+          "package_name": "com.mnd.delivery.mnd_shop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdlFujMKRnSui11__e28Amz_v8WW6i_UA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

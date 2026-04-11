@@ -1,0 +1,19 @@
+name: mnd_theme
+description: Shared MND light/dark theme, glass chrome, and auth layouts.
+publish_to: 'none'
+version: 1.0.0
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_lints: ^5.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
