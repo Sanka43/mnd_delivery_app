@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../widgets/app_snackbar.dart';
 import '../../food/food_page.dart';
 import '../models/home_catalog_models.dart';
 
@@ -17,9 +18,7 @@ class HomeServicesStrip extends StatelessWidget {
         children: [
           for (var i = 0; i < services.length; i++) ...[
             if (i > 0) const SizedBox(width: 8),
-            Expanded(
-              child: _ServiceTile(service: services[i]),
-            ),
+            Expanded(child: _ServiceTile(service: services[i])),
           ],
         ],
       ),
@@ -46,14 +45,14 @@ class _ServiceTile extends StatelessWidget {
         onTap: () {
           if (service.id == HomeServiceId.food) {
             Navigator.of(context).push<void>(
-              MaterialPageRoute<void>(
-                builder: (_) => const FoodPage(),
-              ),
+              MaterialPageRoute<void>(builder: (_) => const FoodPage()),
             );
             return;
           }
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('${service.label} — coming soon')),
+          AppSnackBar.showInfo(
+            context,
+            message: '${service.label} is coming soon.',
+            icon: Icons.hourglass_top_rounded,
           );
         },
         child: Padding(
@@ -61,11 +60,7 @@ class _ServiceTile extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
-                service.icon,
-                size: 28,
-                color: cs.primary,
-              ),
+              Icon(service.icon, size: 28, color: cs.primary),
               const SizedBox(height: 8),
               Text(
                 service.label,

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../../widgets/app_snackbar.dart';
 import '../models/home_catalog_models.dart';
 
 /// Best-seller tile: image, name, price, meta, add button.
 class HomeProductCard extends StatelessWidget {
-  const HomeProductCard({
-    super.key,
-    required this.product,
-  });
+  const HomeProductCard({super.key, required this.product});
 
   final HomeProduct product;
 
@@ -73,10 +71,10 @@ class HomeProductCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         child: InkWell(
                           onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text('Added ${product.name}'),
-                              ),
+                            AppSnackBar.showSuccess(
+                              context,
+                              message: 'Added to cart: ${product.name}',
+                              icon: Icons.shopping_bag_rounded,
                             );
                           },
                           borderRadius: BorderRadius.circular(10),
@@ -135,11 +133,7 @@ class HomeProductCard extends StatelessWidget {
               const SizedBox(height: 4),
               Row(
                 children: [
-                  Icon(
-                    Icons.schedule_rounded,
-                    size: 16,
-                    color: cs.outline,
-                  ),
+                  Icon(Icons.schedule_rounded, size: 16, color: cs.outline),
                   const SizedBox(width: 4),
                   Text(
                     product.prepTimeLabel,

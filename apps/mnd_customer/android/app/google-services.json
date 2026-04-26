@@ -12,7 +12,12 @@
           "package_name": "com.mnd.delivery.mnd_customer"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "856195988916-avj9j5h08vuj5a3m01vevaam0r449jmn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAdlFujMKRnSui11__e28Amz_v8WW6i_UA"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "856195988916-avj9j5h08vuj5a3m01vevaam0r449jmn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

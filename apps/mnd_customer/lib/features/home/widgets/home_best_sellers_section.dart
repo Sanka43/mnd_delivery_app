@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../../widgets/app_snackbar.dart';
 import '../models/home_catalog_models.dart';
-import 'home_product_card.dart';
+import 'home_popular_food_card.dart';
 
-/// Section title + 2-column grid of products.
-class HomeBestSellersSection extends StatelessWidget {
-  const HomeBestSellersSection({
-    super.key,
-    required this.products,
-  });
+/// "Popular Food" horizontal list (reference layout).
+class HomePopularFoodSection extends StatelessWidget {
+  const HomePopularFoodSection({super.key, required this.products});
 
   final List<HomeProduct> products;
 
@@ -17,28 +15,31 @@ class HomeBestSellersSection extends StatelessWidget {
     final theme = Theme.of(context);
     final cs = theme.colorScheme;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Best Sellers',
+                'Weekly Special',
                 style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w800,
+                  color: cs.onSurface,
                 ),
               ),
               TextButton(
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('See all — coming soon')),
+                  AppSnackBar.showInfo(
+                    context,
+                    message: 'Full list is coming soon.',
+                    icon: Icons.grid_view_rounded,
                   );
                 },
                 child: Text(
-                  'See All',
+                  'See all',
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     color: cs.primary,
@@ -47,32 +48,24 @@ class HomeBestSellersSection extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 4),
-          LayoutBuilder(
-            builder: (context, constraints) {
-              final w = constraints.maxWidth;
-              const gap = 14.0;
-              final tileW = (w - gap) / 2;
-              const aspect = 0.72;
-              final tileH = tileW / aspect;
-
-              return Wrap(
-                spacing: gap,
-                runSpacing: gap,
-                children: products
-                    .map(
-                      (p) => SizedBox(
-                        width: tileW,
-                        height: tileH,
-                        child: HomeProductCard(product: p),
-                      ),
-                    )
-                    .toList(),
+        ),
+        const SizedBox(height: 12),
+        SizedBox(
+          height: 250,
+          child: ListView.separated(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            scrollDirection: Axis.horizontal,
+            itemCount: products.length.clamp(0, 4),
+            separatorBuilder: (_, __) => const SizedBox(width: 12),
+            itemBuilder: (context, i) {
+              return SizedBox(
+                width: 178,
+                child: HomePopularFoodCard(product: products[i]),
               );
             },
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

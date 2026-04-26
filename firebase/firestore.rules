@@ -27,6 +27,17 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    match /customers/{uid} {
+      allow read: if signedIn() && (request.auth.uid == uid || isAdmin());
+      allow create: if signedIn()
+        && request.auth.uid == uid
+        && request.resource.data.uid == request.auth.uid;
+      allow update: if signedIn()
+        && request.auth.uid == uid
+        && request.resource.data.uid == request.auth.uid;
+      allow delete: if false;
+    }
+
     match /settings/{docId} {
       allow read: if signedIn();
       allow write: if isAdmin() && docId == 'global';
@@ -46,6 +57,14 @@ service cloud.firestore {
       allow create: if isShop()
         && request.resource.data.shop_id == request.auth.uid;
       allow update, delete: if isAdmin();
+    }
+
+    match /shops/{shopId} {
+      allow read, create, update, delete: if isAdmin();
+    }
+
+    match /shops/{shopId}/items/{itemId} {
+      allow read, create, update, delete: if isAdmin();
     }
   }
 }

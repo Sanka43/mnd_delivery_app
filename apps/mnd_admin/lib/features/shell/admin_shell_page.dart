@@ -5,6 +5,7 @@ import 'package:mnd_theme/mnd_theme.dart';
 import '../dashboard/dashboard_page.dart';
 import '../placeholder/coming_soon_page.dart';
 import '../settings/global_settings_page.dart';
+import '../shops/shops_page.dart';
 import 'admin_shell_header.dart';
 
 /// Main admin layout: left navigation, shell header, content.
@@ -59,12 +60,7 @@ class _AdminShellPageState extends State<AdminShellPage> {
       label: 'Shops',
       icon: Icons.storefront_outlined,
       selectedIcon: Icons.storefront_rounded,
-      builder: (_) => const ComingSoonPage(
-        title: 'Shops',
-        description:
-            'Approve registrations, enable or disable shops, and open shop '
-            'details.',
-      ),
+      builder: (_) => const ShopsPage(),
     ),
     _NavItem(
       label: 'Riders',
